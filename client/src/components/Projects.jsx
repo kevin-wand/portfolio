@@ -2,13 +2,38 @@ import React from 'react'
 import '../assets/Style.css'
 
 export default function Projects() {
+  const projects = [
+    {
+      name: "The Big Top",
+      image: "http://www.jpg",
+      description: "Ticketmaster"
+    },
+    {
+      name: "RE Dev Model",
+      image: "http://www.jpg",
+      description: "Ticketmaster"
+    },
+    {
+      name: "Akea Comics",
+      image: "http://www.jpg",
+      description: "Ticketmaster"
+    },
+    {
+      name: "Test Your Inner Nerd",
+      image: "http://www.jpg",
+      description: "Ticketmaster"
+    }
+  ]
+
   return (
     <div className='project-container'>
-      <div className='project-card'>projects 1</div>
-      <div className='project-card'>projects 2</div>
-      <div className='project-card'>projects 3</div>
-      <div className='project-card'>projects 4</div>
-      <div className='project-card'>projects 5</div>
+      {projects.map((project) => (
+        <div className='project-card' key={project.index}>
+          <img src={project.image} alt={project.name} />
+          <div>{project.name}</div>
+          <div>{project.description}</div>
+        </div>
+      ))}
     </div>
   )
 }
