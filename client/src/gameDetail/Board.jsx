@@ -1,6 +1,5 @@
 import React from 'react'
 import { useEffect, useRef } from 'react'
-// import data from './data'
 import BallMovement from './BallMovement'
 import CollisionWall from './CollisionWall'
 import Brick from './Brick'
@@ -8,8 +7,8 @@ import Paddle from './Paddle'
 import CollisionBrick from './CollisionBrick'
 import CollisionPaddle from './CollisionPaddle'
 import PlayerStats from './PlayerStats'
-
-// let { ballSize } = data
+import GameWon from './GameWon'
+import BallReset from './BallReset'
 
 let bricks = []
 
@@ -17,10 +16,10 @@ let bricks = []
 let ballSize = {
   x: 20,
   y: 200,
-  dx: 5,
-  dy: 5,
+  dx: 6,
+  dy: 6,
   rad: 10,
-  speed: 10,
+  speed: 8,
 }
 // initial gap and how far to push bricks down
 let brickSize = {
@@ -49,10 +48,14 @@ export default function Board() {
       const canvas = canvasRef.current
       const ctx = canvas.getContext("2d")
 
+      // create the collision dimension for the paddle
+      // set up inside the useEffect to access canvas property
       paddleSize.y = canvas.height - 30
 
-      let brickSet = Brick(4, bricks, canvas, brickSize)
+      // sets the layers of bricks, using the canvas dimensions, with the brick size and height
+      let brickSet = Brick(1, bricks, canvas, brickSize, brickSize.y = 50)
 
+      // reset the bricks layout
       if (brickSet && brickSet.length > 0) {
         bricks = brickSet
       }
@@ -61,6 +64,7 @@ export default function Board() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       PlayerStats(ctx, player, canvas)
+
       bricks.map((brick) => {
         return brick.draw(ctx)
       })
@@ -71,16 +75,16 @@ export default function Board() {
 
       let brickCollision
 
-      for (let i = 0; i < bricks.length; i++) {
-        brickCollision = CollisionBrick(ballSize, bricks[i])
+      for (let j = 0; j < bricks.length; j++) {
+        brickCollision = CollisionBrick(ballSize, bricks[j])
 
-        if (brickCollision.hit && !bricks[i].destroyed) {
+        if (brickCollision.hit && !bricks[j].destroyed) {
           if (brickCollision.axis === "X") {
             ballSize.dx *= -1
-            bricks[i].destroyed = true
+            bricks[j].destroyed = true
           } else if (brickCollision.axis === "Y") {
             ballSize.dy *= -1
-            bricks[i].destroyed = true
+            bricks[j].destroyed = true
           }
           player.score += 10
         }
@@ -89,6 +93,36 @@ export default function Board() {
       Paddle(ctx, canvas, paddleSize)
 
       CollisionPaddle(ballSize, paddleSize)
+
+      // logic to end game
+      let total = 0
+      for (let i = 0; i < bricks.length; i++) {
+        if (bricks[i].destroyed === true) {
+          total++
+        }
+      }
+
+      if (total === bricks.length) {
+        alert("Congratulations! Please refresh the page if you'd like to play again, or press OK to continue navigating the site")
+        bricks.length = 0
+        ballSize.x = 20
+        ballSize.y = 200
+        ballSize.dx = 0
+        ballSize.dy = 0
+        total++
+      }
+
+      if (player.lives === 0) {
+        alert("No lives remaining! Please refresh the page if you'd like to play again, or press OK to continue navigating the site")
+        player.lives = 5
+        player.score = 0
+        BallReset(ballSize, paddleSize)
+        bricks.length = 0
+        ballSize.x = 20
+        ballSize.y = 200
+        ballSize.dx = 0
+        ballSize.dy = 0
+      }
 
       requestAnimationFrame(render)
     }
