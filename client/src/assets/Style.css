@@ -55,9 +55,17 @@ table {
   flex-direction: column;
 }
 
-.canvas {
-  height: 30vh;
+/* BRICKLE GAME START */
+
+.game {
+  background-color: gray;
 }
+
+.canvas {
+  background-color: aquamarine;
+}
+
+/* BRICKLE GAME END */
 
 .profile {
   display: flex;
