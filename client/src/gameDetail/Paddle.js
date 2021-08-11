@@ -1,5 +1,5 @@
-export default (ctx, canvas, paddleSize) => {
-  class Paddle {
+export default function Paddle(ctx, canvas, paddleSize) {
+  class PaddleObj {
     constructor(x) {
       this.x = x
       this.y = canvas.height - 30
@@ -15,7 +15,7 @@ export default (ctx, canvas, paddleSize) => {
     }
   }
 
-  let paddle = new Paddle(paddleSize.x)
+  let paddle = new PaddleObj(paddleSize.x)
   paddle.move()
   if (paddleSize.x <= 0) {
     paddleSize.x = 0
