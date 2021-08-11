@@ -7,7 +7,6 @@ import Paddle from './Paddle'
 import CollisionBrick from './CollisionBrick'
 import CollisionPaddle from './CollisionPaddle'
 import PlayerStats from './PlayerStats'
-import GameWon from './GameWon'
 import BallReset from './BallReset'
 
 let bricks = []

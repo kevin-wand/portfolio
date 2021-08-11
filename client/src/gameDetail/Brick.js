@@ -3907,7 +3907,7 @@ export default function Brick(level, bricks, canvas, brick) {
       brick.colors
     )
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1 + brick.width + 1 + brick.width + 1 + brick.width + 1 + brick.width + 1 + brick.width + 1
+    brick.x += brick.width + 1
     newBrick = new OneBrick(
       brick.x + brick.width,
       brick.y,
@@ -3916,41 +3916,31 @@ export default function Brick(level, bricks, canvas, brick) {
       brick.colors
     )
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
+    brick.x += brick.width + 1 + brick.width + 1 + brick.width + 1 + brick.width + 1 + brick.width + 1
+    newBrick = new OneBrick(
+      brick.x + brick.width,
+      brick.y,
+      brick.width,
+      brick.height,
+      brick.colors
+    )
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
-    brick.x += brick.width + 1
     brickDisplay.push(newBrick)
     brick.x += brick.width + 1
     if (brick.x + brick.width >= canvas.width) {
