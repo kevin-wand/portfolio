@@ -15,7 +15,7 @@ let bricks = []
 // x,y set initial drop in of ball, dx / dy changes framerate of ball, rad changes size of ball
 let ballSize = {
   x: 20,
-  y: 200,
+  y: 60,
   dx: 6,
   dy: 6,
   rad: 10,
@@ -24,13 +24,13 @@ let ballSize = {
 // initial gap and how far to push bricks down
 let brickSize = {
   x: 0.5,
-  y: 50,
-  height: 20,
+  y: 100,
+  height: 10,
   density: 2,
 }
 let player = {
   name: "Kevin",
-  lives: 5,
+  lives: 1,
   score: 0
 }
 // height, width sets size of paddle, x starts the initial location of paddle
@@ -52,10 +52,12 @@ export default function Board() {
       // set up inside the useEffect to access canvas property
       paddleSize.y = canvas.height - 30
 
+      // runs function Brick
       // sets the layers of bricks, using the canvas dimensions, with the brick size and height
-      let brickSet = Brick(1, bricks, canvas, brickSize, brickSize.y = 50)
+      // let brickSet = Brick(29, bricks, canvas, brickSize, brickSize.y = 100)
+      let brickSet = Brick(1, bricks, canvas, brickSize, brickSize.y = 100)
 
-      // reset the bricks layout
+      // guardrail for the bricks
       if (brickSet && brickSet.length > 0) {
         bricks = brickSet
       }
@@ -64,20 +66,14 @@ export default function Board() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       PlayerStats(ctx, player, canvas)
-
       bricks.map((brick) => {
         return brick.draw(ctx)
       })
-
       BallMovement(ctx, ballSize)
-
       CollisionWall(ballSize, canvas, player, paddleSize)
-
       let brickCollision
-
       for (let j = 0; j < bricks.length; j++) {
         brickCollision = CollisionBrick(ballSize, bricks[j])
-
         if (brickCollision.hit && !bricks[j].destroyed) {
           if (brickCollision.axis === "X") {
             ballSize.dx *= -1
@@ -89,9 +85,7 @@ export default function Board() {
           player.score += 10
         }
       }
-
       Paddle(ctx, canvas, paddleSize)
-
       CollisionPaddle(ballSize, paddleSize)
 
       // logic to end game
@@ -101,25 +95,23 @@ export default function Board() {
           total++
         }
       }
-
       if (total === bricks.length) {
-        alert("Congratulations! Please refresh the page if you'd like to play again, or press OK to continue navigating the site")
+        alert("Congratulations! Please refresh the page if you'd like to play again, or press OK to continue navigating the site.")
         bricks.length = 0
         ballSize.x = 20
-        ballSize.y = 200
+        ballSize.y = 60
         ballSize.dx = 0
         ballSize.dy = 0
         total++
       }
-
       if (player.lives === 0) {
-        alert("No lives remaining! Please refresh the page if you'd like to play again, or press OK to continue navigating the site")
+        alert("No lives remaining! Please refresh the page if you'd like to play again, or press OK to continue navigating the site.")
         player.lives = 5
         player.score = 0
         BallReset(ballSize, paddleSize)
         bricks.length = 0
         ballSize.x = 20
-        ballSize.y = 200
+        ballSize.y = 60
         ballSize.dx = 0
         ballSize.dy = 0
       }
@@ -133,7 +125,7 @@ export default function Board() {
     <canvas
       className="canvas"
       ref={canvasRef}
-      height="500px"
+      height="600px"
       width={window.innerWidth - 20}
       onMouseMove={(event) => (paddleSize.x = event.clientX - paddleSize.width / 2 - 8)
       }
