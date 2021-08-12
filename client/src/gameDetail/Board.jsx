@@ -14,7 +14,7 @@ let bricks = []
 // x,y set initial drop in of ball, dx / dy changes framerate of ball, rad changes size of ball
 let ballSize = {
   x: 20,
-  y: 60,
+  y: 500,
   dx: 6,
   dy: 6,
   rad: 10,
@@ -35,7 +35,7 @@ let player = {
 // height, width sets size of paddle, x starts the initial location of paddle
 let paddleSize = {
   height: 20,
-  width: 100,
+  width: 160,
   x: 100
 }
 
@@ -54,7 +54,7 @@ export default function Board() {
       // runs function Brick
       // sets the layers of bricks, using the canvas dimensions, with the brick size and height
       // let brickSet = Brick(29, bricks, canvas, brickSize, brickSize.y = 100)
-      let brickSet = Brick(1, bricks, canvas, brickSize, brickSize.y = 100)
+      let brickSet = Brick(1, bricks, canvas, brickSize, brickSize.y = 80)
 
       // guardrail for the bricks
       if (brickSet && brickSet.length > 0) {
@@ -105,12 +105,12 @@ export default function Board() {
       }
       if (player.lives === 0) {
         alert("No lives remaining! Please refresh the page if you'd like to play again, or press OK to continue navigating the site.")
-        player.lives = 5
+        player.lives = 1
         player.score = 0
         BallReset(ballSize, paddleSize)
         bricks.length = 0
         ballSize.x = 20
-        ballSize.y = 60
+        ballSize.y = 500
         ballSize.dx = 0
         ballSize.dy = 0
       }
@@ -124,7 +124,7 @@ export default function Board() {
     <canvas
       className="canvas"
       ref={canvasRef}
-      height="600px"
+      height={window.innerHeight - 200}
       width={window.innerWidth - 20}
       onMouseMove={(event) => (paddleSize.x = event.clientX - paddleSize.width / 2 - 8)
       }
