@@ -5,22 +5,26 @@ export default function Projects() {
   const projects = [
     {
       name: "The Big Top",
-      image: "http://www.jpg",
-      description: "Ticketmaster"
+      link: "https://the-big-top.netlify.app",
+      image: "https://the-big-top.netlify.app",
+      description: "Based on the ticketmaster api you can pull the "
     },
     {
       name: "RE Dev Model",
-      image: "http://www.jpg",
+      link: "https://redevmodel.netlify.app",
+      image: "https://redevmodel.netlify.app",
       description: "Ticketmaster"
     },
     {
       name: "Akea Comics",
-      image: "http://www.jpg",
+      link: "https://akea-comics-app.netlify.app",
+      image: "https://akea-comics-app.netlify.app",
       description: "Ticketmaster"
     },
     {
       name: "Test Your Inner Nerd",
-      image: "http://www.jpg",
+      link: "https://nerd-score.netlify.app",
+      image: "https://nerd-score.netlify.app",
       description: "Ticketmaster"
     }
   ]
@@ -30,6 +34,7 @@ export default function Projects() {
       {projects.map((project, index) => (
         <div className='project-card' key={index}>
           <img src={project.image} alt={project.name} />
+          <div>{project.link}</div>
           <div>{project.name}</div>
           <div>{project.description}</div>
         </div>

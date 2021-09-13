@@ -29,7 +29,7 @@ let brickSize = {
 }
 let player = {
   name: "Kevin",
-  lives: 1,
+  lives: 5,
   score: 0
 }
 // height, width sets size of paddle, x starts the initial location of paddle
