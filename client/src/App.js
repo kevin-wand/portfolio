@@ -14,6 +14,8 @@ function App() {
       <Game />
       <div className='profile'>
         <Bio />
+      </div>
+      <div className='skills-grid'>
         <Skills />
       </div>
       <div className='project-wrapper'>
@@ -27,13 +29,3 @@ function App() {
 
 export default App;
 
-/*
-references:
-https://24ways.org/2014/javascript-modules-the-es6-way/
-https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export#using_the_default_export
-https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
-https://www.youtube.com/watch?v=ftDxniRTpRQ&t
-https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
-
-
-*/
