@@ -2,7 +2,7 @@ import '../assets/Style.css'
 import { useState } from 'react'
 
 export default function Contact() {
-  const [name, setName] = useState('')
+  const [isName, setName] = useState('')
   const handleSubmit = (e) => {
     e.preventDefault()
   }
@@ -15,21 +15,21 @@ export default function Contact() {
         <label>
           Name:
           <input
-            name='Name'
+            isName='Name'
             onChange={(e) => setName(e.target)}
           />
         </label>
         <label>
           Email:
           <input
-            name='Email'
+            isName='Email'
             onChange={(e) => setName(e.target)}
           />
         </label>
         <label>
           Comment:
           <textarea
-            name='Comment'
+            isName='Comment'
             onChange={(e) => setName(e.target)}
           />
         </label>
